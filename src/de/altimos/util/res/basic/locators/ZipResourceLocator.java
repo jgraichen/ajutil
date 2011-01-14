@@ -20,13 +20,15 @@
  */
 package de.altimos.util.res.basic.locators;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import de.altimos.util.res.ResourceInfo;
 import de.altimos.util.res.ResourceKey;
-import de.altimos.util.res.basic.AbstractResourceInfo;
+import de.altimos.util.res.ResourceLocator;
 import de.altimos.util.res.basic.BasicResourceManager;
 
 /**
@@ -34,21 +36,30 @@ import de.altimos.util.res.basic.BasicResourceManager;
  * @author Jan Graichen
  * @version $Id$
  */
-public class ZipInfo extends AbstractResourceInfo {
+public class ZipResourceLocator implements ResourceLocator {
 	
 	private ZipFile archive;
-	private ZipEntry ze;
 	
-	
-	public ZipInfo(BasicResourceManager mgr, ResourceKey key, ZipFile archive, ZipEntry ze) {
-		super(mgr, key);
-		this.archive = archive;
-		this.ze = ze;
+	@Override
+	public void setPath(String path) {
+		try {
+			archive = new ZipFile(new File(path));
+		} catch(ZipException e) {
+			throw new IllegalArgumentException(e);
+		} catch(IOException e) {
+			throw new IllegalArgumentException(e);
+		}
 	}
 	
 	@Override
-	public InputStream openStream() throws IOException {
-		return archive.getInputStream(ze);
+	public ResourceInfo locateResource(BasicResourceManager mgr, ResourceKey key) {
+		if(archive != null) {
+			ZipEntry ze = archive.getEntry(key.getName());
+			if(ze != null) {
+				return new ZipInfo(mgr, key, archive, ze);
+			}
+		}
+		return null;
 	}
 	
 }

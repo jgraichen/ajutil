@@ -171,15 +171,11 @@ public class BasicResourceManager implements ResourceManager {
 				ResourceLocator l = locator.newInstance();
 				l.setPath(path);
 				return l;
-			} catch(InstantiationException e) {
+			} catch(Exception e) {
 				if(listener != null) {
 					listener.exceptionThrown(e);
 				}
-			} catch(IllegalAccessException e) {
-				if(listener != null) {
-					listener.exceptionThrown(e);
-				}
-			}
+			} 
 			return null;
 		}
 	}
