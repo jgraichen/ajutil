@@ -24,6 +24,8 @@ import java.util.Locale;
 
 /**
  * This class provides information about the users system.
+ * Supports linux, windows, mac as operating systems  
+ * and x86, amd64, ppc32 and ppc64 as architectures.
  * 
  * @author Jan Graichen <jan.graichen@gmx.de>
  * @version $Id$
