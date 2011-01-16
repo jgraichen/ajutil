@@ -113,9 +113,12 @@ public class BasicResourceManager implements ResourceManager {
 	@Override
 	public ResourceInfo getResource(ResourceKey key) {
 		for(LocatorThreadHandler h : locators) {
-			ResourceInfo info = h.get().locateResource(this, key);
-			if(info != null) {
-				return info;
+			ResourceLocator locator = h.get();
+			if(locator != null) {
+				ResourceInfo info = locator.locateResource(this, key);
+				if(info != null) {
+					return info;
+				}
 			}
 		}
 		return null;
