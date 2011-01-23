@@ -34,13 +34,13 @@ import de.altimos.util.res.basic.BasicResourceManager;
  * @author Jan Graichen
  * @version $Id$
  */
-public class ZipInfo extends AbstractResourceInfo {
+public class ZipResourceInfo extends AbstractResourceInfo {
 	
 	private ZipFile archive;
 	private ZipEntry ze;
 	
 	
-	public ZipInfo(BasicResourceManager mgr, ResourceKey key, ZipFile archive, ZipEntry ze) {
+	public ZipResourceInfo(BasicResourceManager mgr, ResourceKey key, ZipFile archive, ZipEntry ze) {
 		super(mgr, key);
 		this.archive = archive;
 		this.ze = ze;
@@ -50,5 +50,4 @@ public class ZipInfo extends AbstractResourceInfo {
 	public InputStream openStream() throws IOException {
 		return archive.getInputStream(ze);
 	}
-	
 }

@@ -56,4 +56,8 @@ abstract public class AbstractResourceInfo implements ResourceInfo {
 		return mgr.getResource(nname);
 	}
 	
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "[" + name + "]";
+	}
 }

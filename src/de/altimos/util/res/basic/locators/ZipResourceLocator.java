@@ -56,7 +56,7 @@ public class ZipResourceLocator implements ResourceLocator {
 		if(archive != null) {
 			ZipEntry ze = archive.getEntry(key.getName());
 			if(ze != null) {
-				return new ZipInfo(mgr, key, archive, ze);
+				return new ZipResourceInfo(mgr, key, archive, ze);
 			}
 		}
 		return null;
