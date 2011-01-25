@@ -16,5 +16,5 @@ public interface TaskWorker {
 	 * @param tasks to execute
 	 */
 	@SuppressWarnings("rawtypes")
-	public void executeTasks(Collection<Task> tasks);
+	public void executeTasks(Collection<? extends Task> tasks);
 }

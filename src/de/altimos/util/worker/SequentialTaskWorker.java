@@ -25,7 +25,7 @@ public class SequentialTaskWorker implements TaskWorker {
 
 	@Override
 	@SuppressWarnings("rawtypes")
-	public void executeTasks(Collection<Task> tasks) {
+	public void executeTasks(Collection<? extends Task> tasks) {
 		synchronized (tasks) {
 			for (Task task : tasks) {
 				task.execute();

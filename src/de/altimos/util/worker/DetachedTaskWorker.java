@@ -24,12 +24,12 @@ public class DetachedTaskWorker implements TaskWorker {
 
 	@Override
 	@SuppressWarnings("rawtypes")
-	public void executeTasks(Collection<Task> tasks) {
+	public void executeTasks(Collection<? extends Task> tasks) {
 		executeTasksGroup(tasks);
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected ThreadGroup executeTasksGroup(Collection<Task> tasks) {
+	protected ThreadGroup executeTasksGroup(Collection<? extends Task> tasks) {
 		ThreadGroup threads = new ThreadGroup(this.toString());
 		for (Task task : tasks) {
 			new TaskThread(threads, task).start();

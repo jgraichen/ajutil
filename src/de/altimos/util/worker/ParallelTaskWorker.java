@@ -40,7 +40,7 @@ public class ParallelTaskWorker extends DetachedTaskWorker {
 
 	@Override
 	@SuppressWarnings("rawtypes")
-	public void executeTasks(Collection<Task> tasks) {
+	public void executeTasks(Collection<? extends Task> tasks) {
 		ThreadGroup threads = executeTasksGroup(tasks);
 		join(threads);
 	}
