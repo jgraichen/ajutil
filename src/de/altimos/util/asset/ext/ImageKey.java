@@ -12,8 +12,6 @@ import de.altimos.util.asset.basic.BasicAssetKey;
  */
 public class ImageKey extends BasicAssetKey<Image> {
 	
-	private boolean flip = false;
-	
 	public ImageKey(String name) {
 		this(name, false);
 	}

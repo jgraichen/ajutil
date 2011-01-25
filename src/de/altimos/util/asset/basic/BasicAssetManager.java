@@ -146,6 +146,7 @@ public class BasicAssetManager implements AssetManager {
 		return null;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public AssetLoader acquireLoader(AssetKey key) {
 		synchronized(loaders) {
 			Class<AssetLoader> loaderClass = key.getLoader();
