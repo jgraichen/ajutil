@@ -23,18 +23,18 @@ package de.altimos.util.translator;
 import java.util.MissingResourceException;
 
 /**
- * This exception is thrown internaly in Translator if used Translation
+ * This exception is thrown internally in Translator if used Translation
  * does not found key for translation but translation source exists.
  * 
  * @author Jan Graichen <jan.graichen@gmx.de>
  * @version $Id$
  */
 public class MissingTranslationException extends MissingResourceException {
-	
+
 	private static final long serialVersionUID = -7067232850760541357L;
-	
+
 	public MissingTranslationException(String s, String translation, String key) {
 		super(s, translation, key);
 	}
-	
+
 }
