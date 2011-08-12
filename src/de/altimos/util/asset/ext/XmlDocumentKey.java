@@ -30,6 +30,10 @@ import de.altimos.util.asset.basic.BasicAssetKey;
  */
 public class XmlDocumentKey extends BasicAssetKey<XmlDocument> {
 	
+	public XmlDocumentKey(String name) {
+		this(name, false);
+	}
+	
 	public XmlDocumentKey(String name, boolean cached) {
 		super(name, ".xml", cached);
 	}

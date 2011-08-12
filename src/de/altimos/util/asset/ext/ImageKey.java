@@ -5,7 +5,7 @@ import java.awt.Image;
 import de.altimos.util.asset.basic.BasicAssetKey;
 
 /**
- * AssetKey fpr image resources.
+ * AssetKey for image resources.
  * 
  * @author Jan Graichen <jan.graichen@gmx.de>
  * @version $Id$
@@ -13,12 +13,7 @@ import de.altimos.util.asset.basic.BasicAssetKey;
 public class ImageKey extends BasicAssetKey<Image> {
 	
 	public ImageKey(String name) {
-		this(name, false);
-	}
-	
-	public ImageKey(String name, boolean flip) {
-		super(name, true);
-		this.flip = flip;
+		super(name);
 	}
 	
 	@Override

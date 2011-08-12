@@ -84,6 +84,20 @@ public class BasicAssetKey<T> implements AssetKey<T> {
 	}
 	
 	@Override
+	public int hashCode() {
+		return name.hashCode() + type.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof BasicAssetKey) {
+			return name.equals(((BasicAssetKey) o).getName()) &&
+			type.equals(((BasicAssetKey) o).getType());
+		}
+		return super.equals(o);
+	}
+	
+	@Override
 	public String toString() {
 		return getClass().getSimpleName()+"["+getName()+"]";
 	}
