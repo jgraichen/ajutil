@@ -42,29 +42,29 @@ import de.altimos.util.res.ResourceManager;
  * @version $Id$
  */
 public class BasicAssetManager implements AssetManager {
-	
+
 	static public final Logger logger = Logger.getLogger(BasicAssetManager.class);
-	
+
 	protected ResourceManager resourceManager;
 	private HashMap<String, AssetImplHandler> loaders = new HashMap<String, AssetImplHandler>();
 	protected AssetCache cache = new AssetCache();
-	
+
 	protected AssetListener listener;
-	
+
 	public BasicAssetManager(ResourceManager resourceManager) {
 		this.resourceManager = resourceManager;
 	}
-	
+
 	@Override
 	public void setListener(AssetListener listener) {
 		this.listener = listener;
 	}
-	
+
 	@Override
 	public AssetListener getListener() {
 		return listener;
 	}
-	
+
 	@Override
 	public void registerLoader(Class<? extends AssetLoader> loaderClass, String... types) {
 		AssetImplHandler h = new AssetImplHandler(loaderClass);
@@ -72,25 +72,25 @@ public class BasicAssetManager implements AssetManager {
 			loaders.put(type, h);
 		}
 	}
-	
+
 	@Override
 	public void unregisterLoader(String... types) {
 		for(String type : types) {
 			loaders.remove(type);
 		}
 	}
-	
+
 	public int getLoaderCount() {
 		return loaders.size();
 	}
-	
+
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public <T> T loadAsset(AssetKey key) {
 		if(listener != null) {
 			listener.assetRequested(this, key);
 		}
-		
+
 		Object asset = key.shouldCached() ? cache.get(key) : null;
 		if(asset == null) {
 			AssetLoader loader = acquireLoader(key);
@@ -100,7 +100,7 @@ public class BasicAssetManager implements AssetManager {
 				}
 				return null;
 			}
-			
+
 			AssetInfo info = locateAsset(key);
 			if(info == null) {
 				if(listener != null) {
@@ -108,9 +108,9 @@ public class BasicAssetManager implements AssetManager {
 				}
 				return null;
 			}
-			
+
 			try {
-				asset = loader.loadAsset(info);
+				asset = loader.loadAsset(this, info);
 				if(asset == null) {
 					listener.assetLoadError(this, key, null);
 					return null;
@@ -121,21 +121,21 @@ public class BasicAssetManager implements AssetManager {
 				}
 				return null;
 			}
-			
+
 			asset = key.postProcess(asset);
-			
+
 			if(key.shouldCached()) {
 				cache.add(key, asset);
 			}
-			
+
 			if(listener != null) {
 				listener.assetLoaded(this, key, loader.getClass());
 			}
 		}
-		
+
 		return (T) key.cloneAsset(asset);
 	}
-	
+
 	@Override
 	@SuppressWarnings("rawtypes")
 	public AssetInfo locateAsset(AssetKey key) {
@@ -145,7 +145,7 @@ public class BasicAssetManager implements AssetManager {
 		}
 		return null;
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public AssetLoader acquireLoader(AssetKey key) {
 		synchronized(loaders) {
@@ -166,24 +166,24 @@ public class BasicAssetManager implements AssetManager {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * AssetImplHandler handles thread-safe AssetLoader instances using ThreadLocal.
 	 * 
 	 * @author Jan Graichen <jan.graichen@gmx.de>
 	 */
 	static protected class AssetImplHandler extends ThreadLocal<AssetLoader> {
-		
+
 		private Class<? extends AssetLoader> type;
-		
+
 		public AssetImplHandler(Class<? extends AssetLoader> type) {
 			this.type = type;
 		}
-		
+
 		public Class<? extends AssetLoader> getType() {
 			return type;
 		}
-		
+
 		@Override
 		protected AssetLoader initialValue(){
 			try {

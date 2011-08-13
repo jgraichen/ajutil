@@ -18,9 +18,9 @@ import de.altimos.util.asset.AssetManager;
  * @version $Id$
  */
 public class ImageLoader implements AssetLoader {
-	
+
 	private static String[] formats;
-	
+
 	/**
 	 * Registers this ImageLoader for all supported formats.
 	 * 
@@ -40,9 +40,9 @@ public class ImageLoader implements AssetLoader {
 		}
 		mgr.registerLoader(ImageLoader.class, formats);
 	}
-	
+
 	@Override
-	public Object loadAsset(AssetInfo info) throws IOException {
+	public Object loadAsset(AssetManager mgr, AssetInfo info) throws IOException {
 		return ImageIO.read(info.openStream());
 	}
 }

@@ -30,13 +30,13 @@ import java.io.IOException;
  * @version $Id$
  */
 public interface AssetLoader {
-	
+
 	/**
 	 * Loads asset using given AssetInfo object.
 	 * 
 	 * @param info
 	 * @return
 	 */
-	public Object loadAsset(AssetInfo info) throws IOException;
-	
+	public Object loadAsset(AssetManager mgr, AssetInfo info) throws IOException;
+
 }

@@ -26,6 +26,7 @@ import org.jdom.input.SAXBuilder;
 
 import de.altimos.util.asset.AssetInfo;
 import de.altimos.util.asset.AssetLoader;
+import de.altimos.util.asset.AssetManager;
 
 /**
  * 
@@ -33,9 +34,9 @@ import de.altimos.util.asset.AssetLoader;
  * @version $Id$
  */
 public class XmlDocumentLoader implements AssetLoader {
-	
+
 	@Override
-	public Object loadAsset(AssetInfo info) throws IOException {
+	public Object loadAsset(AssetManager mgr, AssetInfo info) throws IOException {
 		try{
 			SAXBuilder builder = new SAXBuilder();
 			return new XmlDocument(info.getKey(), builder.build(info.openStream()));
@@ -43,5 +44,5 @@ public class XmlDocumentLoader implements AssetLoader {
 			throw new IOException(e.getMessage(), e);
 		}
 	}
-	
+
 }
