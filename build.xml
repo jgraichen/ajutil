@@ -50,7 +50,7 @@
     </target>
 
     <target name="jar-src" depends="init,build" description="Generate jar with sources">
-        <jar jarfile="ajutil.jar" compress="true" strict="warn">
+        <jar jarfile="ajutil-${version}.jar" compress="true" strict="warn">
             <fileset dir="${build.dir}"></fileset>
         	<fileset dir="${src.dir}"></fileset>
             <manifest>
