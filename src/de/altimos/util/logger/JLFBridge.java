@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import org.apache.log4j.Level;
 
 /**
- * A simple JLF (Java Loggin Framework) to log4j bridge.
+ * A simple JLF (Java Logging Framework) to log4j bridge.
  * Just call JLFBridge.installBridge();
  * 
  * @author Jan Graichen <jan.graichen@gmx.de>
@@ -36,17 +36,24 @@ import org.apache.log4j.Level;
 public class JLFBridge extends Handler {
 	
 	/**
-	 * Install JLFBridge.
+	 * Install the JLFBridge.
+	 * 
+	 * This removes all JLF {@link Handler}s, set the global JLF filter level
+	 * to {@link java.util.logging.Level.ALL} and registers this {@link JLFBridge}
+	 * as the only JLF handler.
 	 */
 	static public void installBridge() {
 		Logger globalLogger = Logger.getLogger("");
+		// remove all handlers
 		Handler[] handlers = globalLogger.getHandlers();
 		for(Handler handler : handlers) {
 			globalLogger.removeHandler(handler);
 		}
-		
+		// add this one
 		Logger.getLogger("").addHandler(new JLFBridge());
+		// inline test
 		Logger.getLogger(JLFBridge.class.getName()).info("JLF to log4j bridge installed.");
+		// don't filter anything out, this is the task for log4j
 		Logger.getLogger("").setLevel(java.util.logging.Level.ALL);
 	}
 	
@@ -55,34 +62,42 @@ public class JLFBridge extends Handler {
 		String message = record.getMessage();
 		if(record.getParameters() != null) {
 			for(int i = 0; i < record.getParameters().length; i++) {
-				message = message.replaceAll("{" + i + "}", record.getParameters()[i].toString());
+				Object param = record.getParameters()[i];
+				message = message.replaceAll("\\{" + i + "\\}", param == null ? "null" : param.toString());
 			}
 		}
 		org.apache.log4j.Logger.getLogger(record.getLoggerName()).log(getLevel(record.getLevel()), message);
 	}
 	
-	private Level getLevel(java.util.logging.Level lvl) {
-		if(lvl.intValue() >= java.util.logging.Level.OFF.intValue()) {
+	@Override
+	public void flush() {}
+	
+	@Override
+	public void close() throws SecurityException {}
+
+	/**
+	 * Assign log4j filter level to given JLF filter level.
+	 * 
+	 * @param level
+	 * @return
+	 */
+	private Level getLevel(java.util.logging.Level level) {
+		if(level.intValue() >= java.util.logging.Level.OFF.intValue()) {
 			return Level.OFF;
 		}
-		if(lvl.intValue() >= java.util.logging.Level.SEVERE.intValue()) {
+		if(level.intValue() >= java.util.logging.Level.SEVERE.intValue()) {
 			return Level.FATAL;
 		}
-		if(lvl.intValue() >= java.util.logging.Level.WARNING.intValue()) {
+		if(level.intValue() >= java.util.logging.Level.WARNING.intValue()) {
 			return Level.WARN;
 		}
-		if(lvl.intValue() >= java.util.logging.Level.INFO.intValue()) {
+		if(level.intValue() >= java.util.logging.Level.INFO.intValue()) {
 			return Level.INFO;
 		}
-		if(lvl.intValue() >= java.util.logging.Level.CONFIG.intValue()) {
+		if(level.intValue() >= java.util.logging.Level.CONFIG.intValue()) {
 			return Level.DEBUG;
 		}
+		// FINE and finer
 		return Level.TRACE;
 	}
-	
-	@Override
-	public void flush() { }
-	
-	@Override
-	public void close() throws SecurityException { }
 }
