@@ -39,7 +39,7 @@
     </target>
 
     <target name="jar" depends="init,build" description="Generate jar">
-        <jar jarfile="ajutil.jar" strict="warn">
+        <jar jarfile="ajutil-${version}.jar" strict="warn">
             <fileset dir="${build.dir}"></fileset>
             <manifest>
                 <attribute name="Implementation-Title" value="Altimos JUtil"/>
