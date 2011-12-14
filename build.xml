@@ -5,7 +5,7 @@
 	<target name="default" depends="build" description="Builds and JARs ajutil"/>
 	
     <target name="init">
-    	<property name="version" value="1.0.0"/>
+    	<property name="version" value="1.0.1"/>
     	
         <property name="build.dir" value="bin"/>
         <property name="lib.dir" value="lib"/>

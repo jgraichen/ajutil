@@ -20,6 +20,8 @@
  */
 package de.altimos.util.logger;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -66,6 +68,12 @@ public class JLFBridge extends Handler {
 				message = message.replaceAll("\\{" + i + "\\}", param == null ? "null" : param.toString());
 			}
 		}
+		Throwable throwable = record.getThrown();
+        if(throwable != null) {
+            StringWriter sink = new StringWriter();
+            throwable.printStackTrace(new PrintWriter(sink, true));
+            message += sink.toString();
+        }
 		org.apache.log4j.Logger.getLogger(record.getLoggerName()).log(getLevel(record.getLevel()), message);
 	}
 	
