@@ -68,13 +68,7 @@ public class JLFBridge extends Handler {
 				message = message.replaceAll("\\{" + i + "\\}", param == null ? "null" : param.toString());
 			}
 		}
-		Throwable throwable = record.getThrown();
-        if(throwable != null) {
-            StringWriter sink = new StringWriter();
-            throwable.printStackTrace(new PrintWriter(sink, true));
-            message += sink.toString();
-        }
-		org.apache.log4j.Logger.getLogger(record.getLoggerName()).log(getLevel(record.getLevel()), message);
+		org.apache.log4j.Logger.getLogger(record.getLoggerName()).log(getLevel(record.getLevel()), message, record.getThrown());
 	}
 	
 	@Override
