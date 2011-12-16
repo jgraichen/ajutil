@@ -20,8 +20,6 @@
  */
 package de.altimos.util.logger;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -65,10 +63,13 @@ public class JLFBridge extends Handler {
 		if(record.getParameters() != null) {
 			for(int i = 0; i < record.getParameters().length; i++) {
 				Object param = record.getParameters()[i];
-				message = message.replaceAll("\\{" + i + "\\}", param == null ? "null" : param.toString());
+				message = message.replaceAll("\\{" + i + "\\}",
+					param == null ? "null" : param.toString());
 			}
 		}
-		org.apache.log4j.Logger.getLogger(record.getLoggerName()).log(getLevel(record.getLevel()), message, record.getThrown());
+		org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(
+				record.getLoggerName());
+		logger.log(getLevel(record.getLevel()), message, record.getThrown());
 	}
 	
 	@Override
@@ -80,8 +81,8 @@ public class JLFBridge extends Handler {
 	/**
 	 * Assign log4j filter level to given JLF filter level.
 	 * 
-	 * @param level
-	 * @return
+	 * @param level JLF level
+	 * @return associated log4j level
 	 */
 	private Level getLevel(java.util.logging.Level level) {
 		if(level.intValue() >= java.util.logging.Level.OFF.intValue()) {
