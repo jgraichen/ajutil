@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ajutil" default="default" basedir=".">
-	<description>Builds ajutil</description>
-
-	<target name="default" depends="build" description="Builds and JARs ajutil"/>
-	
+    <description>Builds ajutil</description>
+    
+    <target name="default" depends="build" description="Builds and JARs ajutil"/>
+    
     <target name="init">
-    	<property name="version" value="1.0.2"/>
-    	
+        <property name="version" value="1.0.2"/>
+        
         <property name="build.dir" value="bin"/>
         <property name="lib.dir" value="lib"/>
         <property name="src.dir" value="src"/>
-    	<property name="dist.dir" value="dist"/>
+        <property name="dist.dir" value="dist"/>
 
         <path id="classpath">
             <fileset dir="${lib.dir}">
@@ -38,9 +38,9 @@
             </fileset>
         </copy>
     </target>
-
+    
     <target name="jar" depends="init,build" description="Generate jar">
-    	<mkdir dir="${dist.dir}"/>
+        <mkdir dir="${dist.dir}"/>
         <jar jarfile="${dist.dir}/ajutil-${version}.jar" strict="warn">
             <fileset dir="${build.dir}"></fileset>
             <manifest>
@@ -50,12 +50,12 @@
             </manifest>
         </jar>
     </target>
-
+    
     <target name="jar-src" depends="init,build" description="Generate jar with sources">
-    	<mkdir dir="${dist.dir}"/>
+        <mkdir dir="${dist.dir}"/>
         <jar jarfile="${dist.dir}/ajutil-${version}.jar" compress="true" strict="warn">
             <fileset dir="${build.dir}"></fileset>
-        	<fileset dir="${src.dir}"></fileset>
+            <fileset dir="${src.dir}"></fileset>
             <manifest>
                 <attribute name="Implementation-Title" value="Altimos JUtil"/>
                 <attribute name="Implementation-Version" value="${version}"/>
@@ -66,6 +66,6 @@
     
     <target name="clean" depends="init" description="Removes build files">
         <delete dir="${build.dir}"/>
-    	<delete dir="${dist.dir}"/>
+        <delete dir="${dist.dir}"/>
     </target>
 </project>
