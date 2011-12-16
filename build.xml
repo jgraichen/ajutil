@@ -10,6 +10,7 @@
         <property name="build.dir" value="bin"/>
         <property name="lib.dir" value="lib"/>
         <property name="src.dir" value="src"/>
+    	<property name="dist.dir" value="dist"/>
 
         <path id="classpath">
             <fileset dir="${lib.dir}">
@@ -39,7 +40,8 @@
     </target>
 
     <target name="jar" depends="init,build" description="Generate jar">
-        <jar jarfile="ajutil-${version}.jar" strict="warn">
+    	<mkdir dir="${dist.dir}"/>
+        <jar jarfile="${dist.dir}/ajutil-${version}.jar" strict="warn">
             <fileset dir="${build.dir}"></fileset>
             <manifest>
                 <attribute name="Implementation-Title" value="Altimos JUtil"/>
@@ -50,7 +52,8 @@
     </target>
 
     <target name="jar-src" depends="init,build" description="Generate jar with sources">
-        <jar jarfile="ajutil-${version}.jar" compress="true" strict="warn">
+    	<mkdir dir="${dist.dir}"/>
+        <jar jarfile="${dist.dir}/ajutil-${version}.jar" compress="true" strict="warn">
             <fileset dir="${build.dir}"></fileset>
         	<fileset dir="${src.dir}"></fileset>
             <manifest>
@@ -63,5 +66,6 @@
     
     <target name="clean" depends="init" description="Removes build files">
         <delete dir="${build.dir}"/>
+    	<delete dir="${dist.dir}"/>
     </target>
 </project>
