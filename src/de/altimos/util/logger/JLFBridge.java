@@ -23,17 +23,25 @@ package de.altimos.util.logger;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Level;
 
 /**
  * A simple JLF (Java Logging Framework) to log4j bridge.
- * Just call JLFBridge.installBridge();
+ * Just call {@link JLFBridge#installBridge()}.
+ * 
+ * This bridge supports parameterized {@linkplain LogRecord}s, LogRecords
+ * with associated throwables.
+ * 
+ * This bridge does not support I18N via {@linkplain java.util.ResourceBundle}s.
  * 
  * @author Jan Graichen <jan.graichen@gmx.de>
  * @version $Id$
  */
 public class JLFBridge extends Handler {
+	
+	static private final Pattern paramPat = Pattern.compile("\\{\\d");
 	
 	/**
 	 * Install the JLFBridge.
@@ -61,10 +69,11 @@ public class JLFBridge extends Handler {
 	public void publish(LogRecord record) {
 		String message = record.getMessage();
 		if(record.getParameters() != null) {
-			for(int i = 0; i < record.getParameters().length; i++) {
-				Object param = record.getParameters()[i];
-				message = message.replaceAll("\\{" + i + "\\}",
-					param == null ? "null" : param.toString());
+			// java.util.logging.Formatter.formatMessage(LogRecord) does this
+			// optimization and delegates the whole formatting thing to
+			// java.text.MessageFormat
+			if(paramPat.matcher(message).find()) {
+				message = java.text.MessageFormat.format(message, record.getParameters());
 			}
 		}
 		org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(
