@@ -68,6 +68,9 @@ public class JLFBridge extends Handler {
 	@Override
 	public void publish(LogRecord record) {
 		String message = record.getMessage();
+		if(message == null) {
+			message = "";
+		}
 		if(record.getParameters() != null) {
 			// java.util.logging.Formatter.formatMessage(LogRecord) does this
 			// optimization and delegates the whole formatting thing to
