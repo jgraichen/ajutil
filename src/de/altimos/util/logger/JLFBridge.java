@@ -79,8 +79,14 @@ public class JLFBridge extends Handler {
 				message = java.text.MessageFormat.format(message, record.getParameters());
 			}
 		}
-		org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(
-				record.getLoggerName());
+		String loggerName = record.getLoggerName();
+		org.apache.log4j.Logger logger = null;
+		// if there is no logger name given we choose the root logger
+		if(loggerName == null) {
+			logger = org.apache.log4j.Logger.getRootLogger();
+		} else {
+			logger = org.apache.log4j.Logger.getLogger(loggerName);
+		}
 		logger.log(getLevel(record.getLevel()), message, record.getThrown());
 	}
 	
