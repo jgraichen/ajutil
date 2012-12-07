@@ -7,7 +7,8 @@ Released on request for [cmur2](https://github.com/cmur2).
 
 Depends on log4j and jdom.
 
-=== License ===
+License
+-------
 
 Licensed under Apache 2.0 License for non-commercial use.
 See LICENSE for more information.
