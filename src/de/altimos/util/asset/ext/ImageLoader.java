@@ -14,7 +14,7 @@ import de.altimos.util.asset.AssetManager;
 /**
  * Image loader using ImageIO.
  * 
- * @author Jan Graichen <jan.graichen@gmx.de>
+ * @author Jan Graichen <jg@altimos.de>
  * @version $Id$
  */
 public class ImageLoader implements AssetLoader {

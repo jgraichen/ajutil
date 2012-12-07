@@ -44,7 +44,7 @@
         <jar jarfile="${dist.dir}/ajutil-${version}.jar" strict="warn">
             <fileset dir="${build.dir}"></fileset>
             <manifest>
-                <attribute name="Implementation-Title" value="Altimos JUtil"/>
+                <attribute name="Implementation-Title" value="A Java Utility Library"/>
                 <attribute name="Implementation-Version" value="${version}"/>
                 <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jan.graichen@gmx.de&gt;"/>
             </manifest>
@@ -57,7 +57,7 @@
             <fileset dir="${build.dir}"></fileset>
             <fileset dir="${src.dir}"></fileset>
             <manifest>
-                <attribute name="Implementation-Title" value="Altimos JUtil"/>
+                <attribute name="Implementation-Title" value="A Java Utility Library"/>
                 <attribute name="Implementation-Version" value="${version}"/>
                 <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jan.graichen@gmx.de&gt;"/>
             </manifest>

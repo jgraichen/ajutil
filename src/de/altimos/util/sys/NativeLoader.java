@@ -1,7 +1,7 @@
 /*
- * Altimos JUtil
+ * A Java Utility Library
  * 
- * Copyright (C) 2010-2011 Jan Graichen <jan.graichen@gmx.de>
+ * Copyright (C) 2010-2012 Jan Graichen <jg@altimos.de>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ import java.io.OutputStream;
 import org.apache.log4j.Logger;
 
 /**
- * NativeLoader provides moethods to extract native
+ * NativeLoader provides methods to extract native
  * libraries from jar file.
  * 
- * @author Jan Graichen <jan.graichen@gmx.de>
+ * @author Jan Graichen <jg@altimos.de>
  * @version $Id$
  */
 public class NativeLoader {

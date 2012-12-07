@@ -1,7 +1,7 @@
 /*
- * Altimos JUtil
+ * A Java Utility Library
  * 
- * Copyright (C) 2010-2011 Jan Graichen <jan.graichen@gmx.de>
+ * Copyright (C) 2010-2012 Jan Graichen <jg@altimos.de>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import de.altimos.util.res.ResourceManager;
  * Basic AssetManager implementation with thread-safe
  * AssetLoader and AssetLocator handling.
  * 
- * @author Jan Graichen <jan.graichen@gmx.de>
+ * @author Jan Graichen <jg@altimos.de>
  * @version $Id$
  */
 public class BasicAssetManager implements AssetManager {
@@ -170,7 +170,7 @@ public class BasicAssetManager implements AssetManager {
 	/**
 	 * AssetImplHandler handles thread-safe AssetLoader instances using ThreadLocal.
 	 * 
-	 * @author Jan Graichen <jan.graichen@gmx.de>
+	 * @author Jan Graichen <jg@altimos.de>
 	 */
 	static protected class AssetImplHandler extends ThreadLocal<AssetLoader> {
 

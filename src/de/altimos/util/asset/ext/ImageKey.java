@@ -7,7 +7,7 @@ import de.altimos.util.asset.basic.BasicAssetKey;
 /**
  * AssetKey for image resources.
  * 
- * @author Jan Graichen <jan.graichen@gmx.de>
+ * @author Jan Graichen <jg@altimos.de>
  * @version $Id$
  */
 public class ImageKey extends BasicAssetKey<Image> {
