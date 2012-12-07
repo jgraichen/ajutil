@@ -11,7 +11,7 @@ Dependencies
 * [Log4J](https://logging.apache.org/log4j/1.2/) 1.2.16
 * [JDOM](http://www.jdom.org/) 1.1.2
 
-(Note: if you are familiar with Apache Ivy and/or automate the dependency download you can simply use `ant resolve`)
+(Note: if you are familiar with Apache Ivy and/or want automate the dependency download you can simply use `ant resolve`.)
 
 License
 -------
