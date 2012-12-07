@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ajutil" default="default" basedir=".">
+<project name="ajutil" default="default" basedir="."
+    xmlns:ivy="antlib:org.apache.ivy.ant">
     <description>Builds ajutil</description>
     
     <target name="default" depends="build" description="Builds and JARs ajutil"/>
@@ -18,7 +19,16 @@
             </fileset>
         </path>
     </target>
-    
+
+    <target name="resolve" depends="init" description="Retrieve dependencies">
+        <mkdir dir="${lib.dir}"/>
+        
+        <ivy:retrieve
+            conf="build"
+            sync="true"
+            pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]"/>
+    </target>
+
     <target name="build" depends="init,clean" description="Builds project">
         <mkdir dir="${build.dir}"/>
 
