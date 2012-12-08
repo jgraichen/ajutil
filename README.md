@@ -5,6 +5,15 @@ Collection of some java utilities I've used in some of my projects some time ago
 
 Released on request for [cmur2](https://github.com/cmur2).
 
+Features
+--------
+
+* a powerful asset loading system (including caching and different loaders) *that relies on*
+* a flexible resource locating system (supports classpath, absolute files, URLs, compressed archives) - because the *where* and *what* of an asset shouldn't depend on each other.  
+* an easy to use translation/i18n system (allows multiple storage formats e.g. XML of translation resources) 
+* a task scheduling system
+* some system utilites (native loader, single App instance detection, CLI parser, system infos)
+
 Dependencies
 ------------
 
