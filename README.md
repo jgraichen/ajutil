@@ -13,6 +13,7 @@ Features
 * an easy to use translation/i18n system (allows multiple storage formats e.g. XML of translation resources) 
 * a task scheduling system
 * some system utilities (native loader, single App instance detection, CLI parser, system infos)
+* a pure Java, improved 3D Perlin noise implementation
 
 Dependencies
 ------------
