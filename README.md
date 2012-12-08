@@ -12,7 +12,7 @@ Features
 * a flexible resource locating system (supports classpath, absolute files, URLs, compressed archives) - because the *where* and *what* of an asset shouldn't depend on each other.  
 * an easy to use translation/i18n system (allows multiple storage formats e.g. XML of translation resources) 
 * a task scheduling system
-* some system utilites (native loader, single App instance detection, CLI parser, system infos)
+* some system utilities (native loader, single App instance detection, CLI parser, system infos)
 
 Dependencies
 ------------
