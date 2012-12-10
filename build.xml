@@ -6,7 +6,7 @@
     <target name="default" depends="build" description="Builds and JARs ajutil"/>
     
     <target name="init">
-        <property name="version" value="1.0.3"/>
+        <property name="version" value="1.0.4"/>
         
         <property name="build.dir" value="bin"/>
         <property name="lib.dir" value="lib"/>
@@ -49,19 +49,19 @@
         </copy>
     </target>
     
-    <target name="jar" depends="init,build" description="Generate jar">
+    <target name="jar" depends="init,build" description="Generate jar with classes">
         <mkdir dir="${dist.dir}"/>
         <jar jarfile="${dist.dir}/ajutil-${version}.jar" strict="warn">
             <fileset dir="${build.dir}"></fileset>
             <manifest>
                 <attribute name="Implementation-Title" value="A Java Utility Library"/>
                 <attribute name="Implementation-Version" value="${version}"/>
-                <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jan.graichen@gmx.de&gt;"/>
+                <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jg@altimos.de&gt;"/>
             </manifest>
         </jar>
     </target>
-    
-    <target name="jar-src" depends="init,build" description="Generate jar with sources">
+
+    <target name="jar-src" depends="init,build" description="Generate jar with classes and sources">
         <mkdir dir="${dist.dir}"/>
         <jar jarfile="${dist.dir}/ajutil-${version}.jar" compress="true" strict="warn">
             <fileset dir="${build.dir}"></fileset>
@@ -69,7 +69,19 @@
             <manifest>
                 <attribute name="Implementation-Title" value="A Java Utility Library"/>
                 <attribute name="Implementation-Version" value="${version}"/>
-                <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jan.graichen@gmx.de&gt;"/>
+                <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jg@altimos.de&gt;"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="src" depends="init" description="Generate jar with sources">
+        <mkdir dir="${dist.dir}"/>
+        <jar jarfile="${dist.dir}/ajutil-${version}-source.jar" compress="true" strict="warn">
+            <fileset dir="${src.dir}"></fileset>
+            <manifest>
+                <attribute name="Implementation-Title" value="A Java Utility Library"/>
+                <attribute name="Implementation-Version" value="${version}"/>
+                <attribute name="Implementation-Vendor" value="Jan Graichen &lt;jg@altimos.de&gt;"/>
             </manifest>
         </jar>
     </target>
