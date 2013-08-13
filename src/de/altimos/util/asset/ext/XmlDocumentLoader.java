@@ -22,7 +22,7 @@ package de.altimos.util.asset.ext;
 
 import java.io.IOException;
 
-import org.jdom.input.SAXBuilder;
+import org.jdom2.input.SAXBuilder;
 
 import de.altimos.util.asset.AssetInfo;
 import de.altimos.util.asset.AssetLoader;

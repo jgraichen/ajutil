@@ -20,7 +20,7 @@
  */
 package de.altimos.util.asset.ext;
 
-import org.jdom.Document;
+import org.jdom2.Document;
 
 import de.altimos.util.asset.Asset;
 import de.altimos.util.asset.AssetKey;

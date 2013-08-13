@@ -26,9 +26,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
 /**
  * Translation implementation that uses a xml file as source and

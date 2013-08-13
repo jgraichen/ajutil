@@ -12,10 +12,7 @@
     <dependencies defaultconfmapping="*->default,sources">
         <!-- Runtime Dependencies (alphabetical) -->
         <dependency org="log4j" name="log4j" rev="1.2.16"/>
-        <dependency org="org.jdom" name="jdom" rev="1.1.2">
-            <!-- don't need XPath support in JDOM -->
-            <exclude org="jaxen"/>
-        </dependency>
+        <dependency org="org.jdom" name="jdom2" rev="2.0.5"/>
         
         <!-- strip all Javadoc, since we have sources -->
         <exclude org="*" ext="*" type="javadoc"/>
